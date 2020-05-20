@@ -1,6 +1,7 @@
 body {
   /* font-family: Optima, Candara, Calibri, Arial, sans-serif; */
   font-family: monospace, Monaco;
+  font-size:85%;
 }
 code {
   font-family: monospace, Monaco;
