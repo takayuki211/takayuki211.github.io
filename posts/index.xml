@@ -7,21 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <copyright>&amp;copy; 2020 takayuki211 All right things.</copyright>
-    <lastBuildDate>Sat, 01 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://takayuki211.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Image Zoom Sample</title>
-      <link>http://takayuki211.github.io/posts/image-zoom-sample/</link>
-      <pubDate>Sat, 01 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://takayuki211.github.io/posts/image-zoom-sample/</guid>
-      <description>This theme is magnified like the image of Medium.
-The jQuery plugin called Zoom.js is used.
-No Zoom.</description>
-    </item>
     
     <item>
       <title>Creating a New Theme</title>
@@ -66,6 +55,15 @@ More complete instructions are available at installing hugo
 Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
 Follow the following steps:
  Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://takayuki211.github.io/posts/image-zoom-sample/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://takayuki211.github.io/posts/image-zoom-sample/</guid>
+      <description></description>
     </item>
     
   </channel>
