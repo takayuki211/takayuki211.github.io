@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AtCoder環境構築 | takayuki211.github.io</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/categories/">Categories</a></li>
+      
+      <li><a href="/tags/">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">AtCoder環境構築</span></h1>
+
+<h2 class="date">2020/05/12</h2>
+</div>
+
+<main>
+<h2 id="install">Install</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm install -g atcoder-cli
+pip3 install --user online-judge-tools
+acc config default-template cpp
+</code></pre></div><p>以下のフォルダ内にテンプレートを作成する。main.cppのようなテンプレートファイルも入れる。</p>
+<ul>
+<li><code>/Users/takayuki/Library/Preferences/atcoder-cli-nodejs</code></li>
+</ul>
+<p>例</p>
+<ul>
+<li><code>/Users/takayuki/Library/Preferences/atcoder-cli-nodejs/cpp/template.json</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">acc config default-test-dirname-format test
+</code></pre></div><h2 id="login">Login</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">acc login
+oj login
+</code></pre></div><hr>
+<h2 id="コンペのフォルダを作成する">コンペのフォルダを作成する</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">acc new abc162
+</code></pre></div><h3 id="問題を解く">問題を解く</h3>
+<p>A問題の場合</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd a
+</code></pre></div><ul>
+<li>main.cppを編集</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oj test
+acc submit main.cpp
+</code></pre></div><p>以下同様に続ける</p>
+<hr>
+<h3 id="参考サイト">参考サイト</h3>
+<p><a href="http://tatamo.81.la/blog/2018/12/07/atcoder-cli-tutorial/">http://tatamo.81.la/blog/2018/12/07/atcoder-cli-tutorial/</a>
+<a href="https://shiopon.hatenablog.jp/entry/2020/01/16/182901">https://shiopon.hatenablog.jp/entry/2020/01/16/182901</a></p>
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+  <hr/>
+  © <a href="https://takayuki211.github.io">Takayuki Yamamoto</a> 2020 | <a href="https://github.com/takayuki211">Github</a> | <a href="https://twitter.com/takayuki211">Twitter</a>
+  
+  </footer>
+  </body>
+</html>
+
