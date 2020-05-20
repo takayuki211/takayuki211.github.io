@@ -30,12 +30,12 @@
 </div>
 
 <main>
-<h3 id="課題意識">課題意識</h3>
+<h2 id="課題意識">課題意識</h2>
 <p>最近AtCoderを始めたが（正確に言うと、以前一度やり始めて、放置していた。今回こそは続ける。）、組み合わせについてfor文で計算するにあたってシフト演算を利用する方法があることを知ったのでメモしておく。</p>
-<h3 id="問題">問題</h3>
+<h3 id="問題１">問題１</h3>
 <p>ABC048 C - たくさんの数式
 <a href="https://atcoder.jp/contests/arc061/tasks/arc061_a">https://atcoder.jp/contests/arc061/tasks/arc061_a</a></p>
-<h3 id="解答">解答</h3>
+<h3 id="解答1">解答1</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
 s <span style="color:#f92672">=</span> input()
@@ -67,7 +67,37 @@ ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 <p>(1)で<code>1&lt;&lt;n</code>としているが、これは1をn桁シフトしている。n=3のとき、1&laquo;3となり、これは2進数表記では1000となる（10進数の9として処理される）。forループはこの数未満の回数となるから、8回ループが回ることになる。</p>
 <p>(2)において桁数でループする。例えばn=3では、000~111の場合を計算したい。この場合、3桁を調べれば良い。</p>
 <p>(3)k桁目が1である場合に処理を行うこととしている。これによって、組み合わせをバイナリな表現によって処理している。</p>
+<h2 id="その他の問題">その他の問題</h2>
+<p>以下のQiitaページを見るに、競プロ初心者向け問題では頻出の模様。
+<a href="https://qiita.com/drken/items/e77685614f3c6bf86f44#2-">https://qiita.com/drken/items/e77685614f3c6bf86f44#2-</a>基礎からスタート&mdash;&ndash;初級編</p>
+<p>ビット演算
+<a href="https://qiita.com/drken/items/7c6ff2aa4d8fce1c9361">https://qiita.com/drken/items/7c6ff2aa4d8fce1c9361</a></p>
+<p>再帰関数でも実装できるらしい。
+<a href="https://qiita.com/drken/items/23a4f604fa3f505dd5ad">https://qiita.com/drken/items/23a4f604fa3f505dd5ad</a></p>
+<p>次回から上記Qiitaページの問題をのQiitaページの問題を解いていきたい。</p>
+<h3 id="問題2">問題2</h3>
+<p>ABC079 C - Train Ticket
+<a href="https://atcoder.jp/contests/abc079/tasks/abc079_c">https://atcoder.jp/contests/abc079/tasks/abc079_c</a></p>
+<h3 id="解答2">解答2</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3</span>
 
+s <span style="color:#f92672">=</span> input()
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">3</span>):
+    sum <span style="color:#f92672">=</span> int(s[<span style="color:#ae81ff">0</span>])
+    ans <span style="color:#f92672">=</span> s[<span style="color:#ae81ff">0</span>]
+    <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+        <span style="color:#75715e"># print(k)</span>
+        <span style="color:#66d9ef">if</span> i<span style="color:#f92672">&gt;&gt;</span>k<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>:
+            sum <span style="color:#f92672">+=</span> int(s[k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+            ans <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;+&#39;</span> <span style="color:#f92672">+</span> s[k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+        <span style="color:#66d9ef">else</span>:
+            sum <span style="color:#f92672">-=</span> int(s[k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])
+            ans <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;-&#39;</span> <span style="color:#f92672">+</span> s[k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]
+    <span style="color:#66d9ef">if</span> sum <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>:
+        <span style="color:#66d9ef">print</span>(ans <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;=7&#39;</span>)
+        <span style="color:#66d9ef">break</span>
+</code></pre></div>
 </main>
 
   <footer>
