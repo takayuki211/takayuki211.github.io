@@ -30,7 +30,7 @@
  /Users/takayuki/Library/Preferences/atcoder-cli-nodejs  例
  /Users/takayuki/Library/Preferences/atcoder-cli-nodejs/cpp/template.json  acc config default-test-dirname-format test Login acc login oj login  コンペのフォルダを作成する acc new abc162 問題を解く A問題の場合
 cd a  main.cppを編集  oj test acc submit main.cpp 以下同様に続ける
- 参考サイト http://tatamo.81.la/blog/2018/12/07/atcoder-cli-tutorial/ https://shiopon.hatenablog.jp/entry/2020/01/16/182901</description>
+ 参考サイト  http://tatamo.81.la/blog/2018/12/07/atcoder-cli-tutorial/ https://shiopon.hatenablog.jp/entry/2020/01/16/182901  </description>
     </item>
     
     <item>
