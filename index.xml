@@ -19,7 +19,19 @@
       <guid>/post/2020/05/20/%E9%83%A8%E5%88%86%E5%92%8C%E5%95%8F%E9%A1%8C%E3%83%93%E3%83%83%E3%83%88%E5%85%A8%E6%8E%A2%E7%B4%A2/</guid>
       <description>課題意識 最近AtCoderを始めたが（正確に言うと、以前一度やり始めて、放置していた。今回こそは続ける。）、組み合わせについてfor文で計算するにあたってシフト演算を利用する方法があることを知ったのでメモしておく。
  ABC048 C - たくさんの数式 https://atcoder.jp/contests/arc061/tasks/arc061_a
-#!/usr/bin/env python3 s = input() n = len(s)-1 ss = [] for l in s: ss.append(l) ss.append(&amp;#39;&amp;#39;) s_list = ss[:-1] s_list_tmp = s_list.copy() ans = 0 for i in range(1&amp;lt;&amp;lt;n): # (1)組み合わせでループ s_list_tmp = s_list.copy() for k in range(n): # (2)桁でループ if i&amp;gt;&amp;gt;k&amp;amp;1: # (3)k桁目が1のときの処理 s_list_tmp[2*k+1] = &amp;#39;_&amp;#39; s_str = &amp;#39;&amp;#39;.join(s_list_tmp) p_str = s_str.split(&amp;#39;_&amp;#39;) p_list = list(map(int, p_str)) ans += sum(p_list) print(ans) 入力されたテキストのどこに+(コードではアンダースコア)を挿入するべきか、という問題として捉えた。</description>
+ 入力されたテキストのどこに+(コードではアンダースコア)を挿入するべきか、という問題として捉えた。
+(1)で1&amp;lt;&amp;lt;nとしているが、これは1をn桁シフトしている。n=3のとき、1&amp;laquo;3となり、これは2進数表記では1000となる（10進数の9として処理される）。forループはこの数未満の回数となるから、8回ループが回ることになる。
+(2)において桁数でループする。例えばn=3では、000~111の場合を計算したい。この場合、3桁を調べれば良い。
+(3)k桁目が1である場合に処理を行うこととしている。これによって、組み合わせをバイナリな表現によって処理している。
+こちらのQiitaページを見るに、競プロ初心者向け問題では頻出の模様。ビット演算の他に、再帰関数でも解けるとのこと。（計算間に合うのかな？）
+ ビット演算 https://qiita.com/drken/items/7c6ff2aa4d8fce1c9361 再帰関数 https://qiita.com/drken/items/23a4f604fa3f505dd5ad  次回から上記Qiitaページの問題を順に解いていこう。 手始めに、いくつか関連問題も解いてみる。
+ ABC079 C - Train Ticket https://atcoder.jp/contests/abc079/tasks/abc079_c
+  ABC104 C - All Green https://atcoder.jp/contests/abc104/tasks/abc104_c
+・・・。これはもはやビット演算と関係ないのではないか？ タイトルにつけた「部分和問題」、恥ずかしながら知りませんでした。どうやら頻出問題で、DPで解くこともできるらしい。
+→　Youtubeの解説を閲覧。 https://youtu.be/DEGyESFF8iE?t=1425
+なるほど、問題ごとにボーナス点を取る・取らないの組み合わせが決まると、他に解くべき問題とその数は自動的に決まってくる。得点が高い問題から目標得点になるまで解いていけば良いから。したがって上の問題と同じようにバイナリで考えれば良い。やり方をカンニングした上でコードを書く。
+ 配列等のアライメントの難易度が高い。 どうにかコードを書いたものの、果たしてこれを制限時間内に解けるだろうか。
+次回に続く。</description>
     </item>
     
     <item>
