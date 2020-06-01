@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pythonのライブラリメモ | takayuki211.github.io</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/categories/">Categories</a></li>
+      
+      <li><a href="/tags/">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Pythonのライブラリメモ</span></h1>
+
+<h2 class="date">2020/06/01</h2>
+</div>
+
+<main>
+<p>PythonでAtCoderを始め、C++に移行しようかと悩んだものの、処理速度にさえ気をつければ十分に戦えそうな雰囲気を感じている今日このごろ。よく使うライブラリの使い方をメモしておく。頭が混乱してきたときにチラ見するためのチートシートでもある。</p>
+<p>※注：サンプルコードは様々なサイトから寄せ集めてきたコピペである。</p>
+<h3 id="collections">collections</h3>
+<h4 id="defaultdict">defaultdict</h4>
+<p>キー全てに対して初期化されたDict。引数には初期化の関数を入れる。intと書くとint()で初期化したことになる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+
+d <span style="color:#f92672">=</span> defaultdict(int)
+<span style="color:#66d9ef">print</span>(d[<span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># -&gt; 0</span>
+
+<span style="color:#75715e"># ネストすると2次元配列のように扱うこともできる</span>
+d2 <span style="color:#f92672">=</span> defaultdict(<span style="color:#66d9ef">lambda</span>: defaultdict(int))
+d2[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+d2[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">3</span>
+<span style="color:#66d9ef">print</span>(d2[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># -&gt; 1</span>
+<span style="color:#66d9ef">print</span>(d2[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]) <span style="color:#75715e"># -&gt; 3</span>
+<span style="color:#66d9ef">print</span>(d2[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">2</span>]) <span style="color:#75715e"># -&gt; 0</span>
+</code></pre></div><p>listやnumpy.arrayの二次元配列との処理速度比較もしてみたいところ。</p>
+<h4 id="ordereddict">OrderedDict</h4>
+<p>順序をもったDict。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> OrderedDict
+
+<span style="color:#75715e"># OrderedDictの生成</span>
+od <span style="color:#f92672">=</span> OrderedDict()
+od[<span style="color:#e6db74">&#39;k1&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+od[<span style="color:#e6db74">&#39;k2&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+od[<span style="color:#e6db74">&#39;k3&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+<span style="color:#66d9ef">print</span>(od) <span style="color:#75715e"># -&gt; OrderedDict([(&#39;k1&#39;, 1), (&#39;k2&#39;, 2), (&#39;k3&#39;, 3)])</span>
+
+<span style="color:#75715e"># 位置を変更する</span>
+od<span style="color:#f92672">.</span>move_to_end(<span style="color:#e6db74">&#39;k1&#39;</span>)
+<span style="color:#66d9ef">print</span>(od) <span style="color:#75715e"># -&gt; OrderedDict([(&#39;k2&#39;, 2), (&#39;k3&#39;, 3), (&#39;k1&#39;, 1)])</span>
+
+<span style="color:#75715e"># 間に挿入</span>
+l <span style="color:#f92672">=</span> list(od<span style="color:#f92672">.</span>items())
+l<span style="color:#f92672">.</span>insert(<span style="color:#ae81ff">1</span>, (<span style="color:#e6db74">&#39;kx&#39;</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))
+od2 <span style="color:#f92672">=</span> OrderedDict(l)
+<span style="color:#66d9ef">print</span>(od2) <span style="color:#75715e"># -&gt; OrderedDict([(&#39;k2&#39;, 2), (&#39;kx&#39;, -1), (&#39;k3&#39;, 3), (&#39;k1&#39;, 1)])</span>
+</code></pre></div><h4 id="counter">Counter</h4>
+<p>要素ごとの出現個数をカウントする。通常はlen()やcount()を使うが、詳細にかぞえたい場合に使う。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> Counter
+
+ls <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]
+
+c <span style="color:#f92672">=</span> Counter(ls)
+<span style="color:#66d9ef">print</span>(c) <span style="color:#75715e"># -&gt; Counter({1: 4, 2: 2, 3: 2, 4: 1})</span>
+<span style="color:#66d9ef">print</span>(c[<span style="color:#ae81ff">1</span>]) <span style="color:#75715e"># -&gt; 4</span>
+
+mc <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span>most_common()
+<span style="color:#66d9ef">print</span>(mc[<span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># -&gt; (1, 4) ## 1が4回出現）</span>
+
+<span style="color:#75715e"># 2回以上出現したもののみを取得する</span>
+<span style="color:#66d9ef">print</span>([i[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> c<span style="color:#f92672">.</span>items() <span style="color:#66d9ef">if</span> i[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>]) <span style="color:#75715e"># -&gt; [1, 2, 3]</span>
+</code></pre></div><h4 id="deque">deque</h4>
+<p>配列の両端へのアクセスコストはlistよりもdequeのほうが低い。キューやスタックを扱うならdequeを使う。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> deque
+
+<span style="color:#75715e"># キューとして使う（先入れ先出し：FIFO）</span>
+d <span style="color:#f92672">=</span> deque([<span style="color:#e6db74">&#39;m&#39;</span>, <span style="color:#e6db74">&#39;n&#39;</span>])
+d<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#39;o&#39;</span>) <span style="color:#75715e"># oを末尾に追加 # -&gt; deque([&#39;m&#39;, &#39;n&#39;, &#39;o&#39;])</span>
+d<span style="color:#f92672">.</span>popleft() <span style="color:#75715e"># 先頭から削除  # -&gt; deque([&#39;m&#39;, &#39;n&#39;, &#39;o&#39;])</span>
+
+<span style="color:#75715e"># スタックとして使う（後入れ先出し：LIFO）</span>
+d2 <span style="color:#f92672">=</span> deque([<span style="color:#e6db74">&#39;m&#39;</span>, <span style="color:#e6db74">&#39;n&#39;</span>])
+d2<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#39;o&#39;</span>) <span style="color:#75715e"># oを末尾に追加 # -&gt; deque([&#39;m&#39;, &#39;n&#39;, &#39;o&#39;])</span>
+d2<span style="color:#f92672">.</span>pop() <span style="color:#75715e"># 末尾からpop # -&gt; deque([&#39;m&#39;, &#39;n&#39;])</span>
+</code></pre></div><!-- raw HTML omitted -->
+<hr>
+<h2 id="bisect">bisect</h2>
+<p>ソートされた状態を保ったままリストに値を挿入する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> bisect <span style="color:#f92672">import</span> bisect_left <span style="color:#75715e"># 挿入位置の取得</span>
+<span style="color:#f92672">from</span> bisect <span style="color:#f92672">import</span> insort_left <span style="color:#75715e"># 挿入</span>
+
+A <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">6</span>]
+
+index <span style="color:#f92672">=</span> bisect_left(A, <span style="color:#ae81ff">3</span>) <span style="color:#75715e"># 3を挿入する位置を取得</span>
+A<span style="color:#f92672">.</span>insert(index, <span style="color:#ae81ff">3</span>) <span style="color:#75715e"># 3を挿入</span>
+<span style="color:#66d9ef">print</span>(A) <span style="color:#75715e"># -&gt; [1, 2, 3, 3, 3, 3, 4, 4, 6, 6, 6, 6]</span>
+
+insort_left(A, <span style="color:#ae81ff">4</span>)
+<span style="color:#66d9ef">print</span>(A) <span style="color:#75715e"># -&gt; [1, 2, 3, 3, 3, 3, 4, 4, 4, 6, 6, 6, 6]</span>
+</code></pre></div><h2 id="heapq">heapq</h2>
+<p>優先度付きキュー。</p>
+<ul>
+<li>最小値（最大値）の選定：<strong><em>O(logN)</em></strong>
+（通常のリストだと**_O(N)_**かかる）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> heapq
+
+a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+heapq<span style="color:#f92672">.</span>heapify(a)  <span style="color:#75715e"># リストを優先度付きキューへ</span>
+<span style="color:#66d9ef">print</span>(a) <span style="color:#75715e"># -&gt; [-1, 0, 8, 1, 6]</span>
+
+heapq<span style="color:#f92672">.</span>heappop(a)  <span style="color:#75715e"># 最小値の取り出し -&gt; -1</span>
+<span style="color:#66d9ef">print</span>(a) <span style="color:#75715e"># -&gt; [0, 1, 8, 6]</span>
+
+heapq<span style="color:#f92672">.</span>heappush(a, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)  <span style="color:#75715e"># 要素の挿入</span>
+<span style="color:#66d9ef">print</span>(a) <span style="color:#75715e"># -&gt; [-2, 0, 1, 8, 6]</span>
+</code></pre></div><p>heapqを使う問題</p>
+<ul>
+<li>ABC141 D - Powerful Discount Tickets</li>
+</ul>
+<script src="https://gist-it.appspot.com/https://github.com/takayuki211/atcoder/blob/master/abc141/d/main.py"></script>
+
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+</main>
+
+  <footer>
+  <script src="//yihui.name/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+  
+  <hr/>
+  © <a href="https://takayuki211.github.io">Takayuki Yamamoto</a> 2020 | <a href="https://github.com/takayuki211">Github</a> | <a href="https://twitter.com/takayuki211">Twitter</a>
+  
+  </footer>
+  </body>
+</html>
+
