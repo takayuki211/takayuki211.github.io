@@ -6,10 +6,21 @@
     <description>Recent content in Posts on takayuki211.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 01 Jun 2020 22:01:41 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2020 10:55:35 +0900</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>情報理論の基礎のメモ</title>
+      <link>/post/2020/06/03/%E6%83%85%E5%A0%B1%E7%90%86%E8%AB%96%E3%81%AE%E5%9F%BA%E7%A4%8E%E3%81%AE%E3%83%A1%E3%83%A2/</link>
+      <pubDate>Wed, 03 Jun 2020 10:55:35 +0900</pubDate>
+      
+      <guid>/post/2020/06/03/%E6%83%85%E5%A0%B1%E7%90%86%E8%AB%96%E3%81%AE%E5%9F%BA%E7%A4%8E%E3%81%AE%E3%83%A1%E3%83%A2/</guid>
+      <description>等確率のときの情報量 n個の事象を特定したときに得られる情報量 $ I(n) $は $ I(n) = C¥log{2}(n) + D
+I(1) = 0 I(1) = C¥log{a}(1) + D = D = 0 I(n) = C¥log{a}(n)
+I(2) = 1 I(2) = C¥log{a}(2) = 1 C = frac{1}{C¥log{a}(2)} = ¥log{2}(a) I(n) = log{2}a * log{a}(n) = log{2}(n) $</description>
+    </item>
     
     <item>
       <title>Pythonのライブラリメモ</title>
